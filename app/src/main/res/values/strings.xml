@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Hoff</string>
+    <string name="label">Перейти в каталог</string>
+    <string name="tovars">Угловые диваны</string>
+    <string name="title">Угловой диван-кровать</string>
+    <string name="otziv">15</string>
+    <string name="ruble">%1$s ₽</string>
+    <string name="pricee">13 000</string>
+</resources>
