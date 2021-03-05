@@ -17,7 +17,7 @@ public class MyHolder extends RecyclerView.ViewHolder {
 
     ImageView mImageView;
     CheckBox mFavorite;
-    TextView mNumberOfReviews,mBrand,mPrice;
+    TextView mNumberOfReviews,mBrand,mPrice,mPriceOld;
 
     public MyHolder(@NonNull View itemView) {
         super(itemView);
@@ -27,6 +27,7 @@ public class MyHolder extends RecyclerView.ViewHolder {
         this.mNumberOfReviews = itemView.findViewById(R.id.numberOfReviews);
         this.mBrand = itemView.findViewById(R.id.brand);
         this.mPrice = itemView.findViewById(R.id.price);
+        this.mPriceOld = itemView.findViewById(R.id.price_old);
 
 
     }
@@ -35,10 +36,11 @@ public class MyHolder extends RecyclerView.ViewHolder {
         mNumberOfReviews.setText(String.valueOf(model.getNumberOfReviews()));
         mBrand.setText(model.getName());
         Picasso.get().load(model.getImage()).fit().into(mImageView);
-        mPrice.setText(mPrice.getContext().getString(R.string.ruble, model.getPrices()));
+        mPrice.setText(mPrice.getContext().getString(R.string.ruble, String.valueOf(model.getPrices().getNew())));
+        mPriceOld.setText(mPriceOld.getContext().getString(R.string.ruble, String.valueOf(model.getPrices().getOld())));
         String id = model.getId();
 
-        mFavorite.setChecked(adapter.getValue(id));
+        mFavorite.setChecked(adapter.getValue(model.getId()));
         mFavorite.setOnCheckedChangeListener((buttonView, isChecked) -> {
             adapter.updateValue(id, isChecked);
         });

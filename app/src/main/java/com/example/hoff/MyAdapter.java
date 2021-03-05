@@ -16,12 +16,15 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
 
-    List<Item> models;
+    List<Item> models = new ArrayList<>();
     SharedPreferences mPrefs;
 
-    public MyAdapter(SharedPreferences mPrefs , List<Item> models){
-        this.models = models;
+    public MyAdapter(SharedPreferences mPrefs){
         this.mPrefs = mPrefs;
+    }
+
+    public void addItems(List<Item> models) {
+        this.models.addAll(models);
     }
 
     @NonNull

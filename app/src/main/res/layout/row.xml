@@ -97,13 +97,22 @@
 
             <TextView
                 android:id="@+id/price"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
-                android:layout_weight="1"
+
                 android:text="@string/pricee"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
+            <TextView
+                android:id="@+id/price_old"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="8dp"
+                android:text="@string/priceeOld"
+                android:textColor="@color/grey"
+                />
         </LinearLayout>
     </RelativeLayout>
 

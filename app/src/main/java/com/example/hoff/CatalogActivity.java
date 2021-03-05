@@ -23,8 +23,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CatalogActivity extends AppCompatActivity {
-    private static final int LIMIT = 20;
+    private static final int LIMIT = 40;
     private int page = 0;
+    private static final boolean isNotMoreData = false;
 
     private RecyclerView mRecyclerView;
     private MyAdapter myAdapter;
@@ -54,7 +55,13 @@ public class CatalogActivity extends AppCompatActivity {
         mPrefs = PreferenceManager
                 .getDefaultSharedPreferences(this);
 
+        myAdapter = new MyAdapter(mPrefs);
+        mRecyclerView.setAdapter(myAdapter);
 
+        loadData(page);
+
+    }
+    public void loadData(int page){
         NetworkService.getInstance()
                 .getJsonApi()
                 .getItem(LIMIT, LIMIT * page)
@@ -63,9 +70,8 @@ public class CatalogActivity extends AppCompatActivity {
                     public void onResponse(Call<Example> call, Response<Example> response) {
                         if (response.isSuccessful() && response.body() != null) {
                             Example body = response.body();
-                            myAdapter = new MyAdapter(mPrefs, body.items);
+                            myAdapter.addItems(body.items);
                             mRecyclerView.setAdapter(myAdapter);
-
                         }
                         Log.d("TAG2", "onResponse" + (response.body()));
                     }
@@ -79,7 +85,6 @@ public class CatalogActivity extends AppCompatActivity {
 
 
                 });
-
 
     }
 }
