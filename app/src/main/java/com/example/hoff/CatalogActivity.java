@@ -23,11 +23,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CatalogActivity extends AppCompatActivity {
+    private static final int LIMIT = 40;
+    private int page = 0;
+
+    private boolean isNotMoreData = false;
+
     private RecyclerView mRecyclerView;
     private MyAdapter myAdapter;
     private MyHolder mHolder;
     SharedPreferences mPrefs ;
-    private ArrayList<Example> mTovars =new ArrayList<>();
+    private Example mTovars;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,35 +53,34 @@ public class CatalogActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recyclerViews);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        myAdapter = new MyAdapter(mPrefs);
+        mRecyclerView.setAdapter(myAdapter);
         mPrefs = PreferenceManager
                 .getDefaultSharedPreferences(this);
 
+        loadData(page);
+    }
 
+    private void loadData(int page) {
         NetworkService.getInstance()
                 .getJsonApi()
-                .getItem()
-                .enqueue(new Callback<List<Example>>() {
+                .getItem(LIMIT,  page)
+                .enqueue(new Callback<Example>() {
                     @Override
-                    public void onResponse(Call<List<Example>> call, Response<List<Example>> response) {
+                    public void onResponse(Call<Example> call, Response<Example> response) {
                         if (response.isSuccessful() && response.body() != null) {
-                            mTovars = new ArrayList<>(response.body());
-                            myAdapter = new MyAdapter(mPrefs, mTovars);
-                            mRecyclerView.setAdapter(myAdapter);
-
+                            Example body = response.body();
+                            myAdapter.addItems(body.items);
+                            isNotMoreData = body.items.size() < LIMIT;
                         }
                         Log.d("TAG2", "onResponse" + (response.body()));
                     }
 
                     @Override
-                    public void onFailure(Call<List<Example>> call, Throwable throwable) {
+                    public void onFailure(Call<Example> call, Throwable throwable) {
                         Log.d("TAG", "Response Failure =" + throwable.toString());
                         Toast.makeText(CatalogActivity.this,"Упс! Что то пошло не так", Toast.LENGTH_SHORT).show();
-
                     }
-
-
                 });
-
-
     }
 }

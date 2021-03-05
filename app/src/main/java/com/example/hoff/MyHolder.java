@@ -31,12 +31,12 @@ public class MyHolder extends RecyclerView.ViewHolder {
 
     }
 
-    public void bind(Example model,MyAdapter adapter){
-        mNumberOfReviews.setText(model.items.getNumberOfReviews());
-        mBrand.setText(model.items.getName());
-        Picasso.get().load(model.items.getImage()).fit().into(mImageView);
-        mPrice.setText(mPrice.getContext().getString(R.string.ruble, model.items.getPrices()));
-        String id = model.items.getId();
+    public void bind(Item model,MyAdapter adapter){
+        mNumberOfReviews.setText(String.valueOf(model.getNumberOfReviews()));
+        mBrand.setText(model.getName());
+        Picasso.get().load(model.getImage()).fit().into(mImageView);
+        mPrice.setText(mPrice.getContext().getString(R.string.ruble, model.getPrices()));
+        String id = model.getId();
 
         mFavorite.setChecked(adapter.getValue(id));
         mFavorite.setOnCheckedChangeListener((buttonView, isChecked) -> {

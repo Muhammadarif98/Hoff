@@ -17,12 +17,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         linearLayout = findViewById(R.id.button);
-        linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                catalog();
-            }
-        });
+        linearLayout.setOnClickListener(v -> catalog());
     }
 
     public void catalog() {

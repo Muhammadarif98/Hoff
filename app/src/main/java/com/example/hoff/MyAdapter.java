@@ -12,15 +12,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
 
-    ArrayList<Example> models;
+    List<Item> models = new ArrayList<>();
     SharedPreferences mPrefs;
 
-    public MyAdapter(SharedPreferences mPrefs , ArrayList<Example> models){
-        this.models = models;
+    public MyAdapter(SharedPreferences mPrefs){
         this.mPrefs = mPrefs;
+    }
+
+    public void addItems(List<Item> models) {
+        this.models.addAll(models);
     }
 
     @NonNull
