@@ -23,10 +23,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CatalogActivity extends AppCompatActivity {
-    private static final int LIMIT = 40;
+    private static final int LIMIT = 20;
     private int page = 0;
-
-    private boolean isNotMoreData = false;
 
     private RecyclerView mRecyclerView;
     private MyAdapter myAdapter;
@@ -53,25 +51,21 @@ public class CatalogActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recyclerViews);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        myAdapter = new MyAdapter(mPrefs);
-        mRecyclerView.setAdapter(myAdapter);
         mPrefs = PreferenceManager
                 .getDefaultSharedPreferences(this);
 
-        loadData(page);
-    }
 
-    private void loadData(int page) {
         NetworkService.getInstance()
                 .getJsonApi()
-                .getItem(LIMIT,  page)
+                .getItem(LIMIT, LIMIT * page)
                 .enqueue(new Callback<Example>() {
                     @Override
                     public void onResponse(Call<Example> call, Response<Example> response) {
                         if (response.isSuccessful() && response.body() != null) {
                             Example body = response.body();
-                            myAdapter.addItems(body.items);
-                            isNotMoreData = body.items.size() < LIMIT;
+                            myAdapter = new MyAdapter(mPrefs, body.items);
+                            mRecyclerView.setAdapter(myAdapter);
+
                         }
                         Log.d("TAG2", "onResponse" + (response.body()));
                     }
@@ -80,7 +74,12 @@ public class CatalogActivity extends AppCompatActivity {
                     public void onFailure(Call<Example> call, Throwable throwable) {
                         Log.d("TAG", "Response Failure =" + throwable.toString());
                         Toast.makeText(CatalogActivity.this,"Упс! Что то пошло не так", Toast.LENGTH_SHORT).show();
+
                     }
+
+
                 });
+
+
     }
 }
