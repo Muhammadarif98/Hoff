@@ -51,11 +51,6 @@ public class MyHolder extends RecyclerView.ViewHolder {
         mFavorite.setOnCheckedChangeListener((buttonView, isChecked) -> {
             adapter.updateValue(id, isChecked);
         });
-        mFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-            }
-        });
     }
 }
