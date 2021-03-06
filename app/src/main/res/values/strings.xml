@@ -7,5 +7,6 @@
     <string name="ruble">%1$s ₽</string>
     <string name="pricee">13 000</string>
     <string name="priceeOld"><strike>15 000</strike></string>
+    <string name="status">Доступен для заказа</string>
 
 </resources>

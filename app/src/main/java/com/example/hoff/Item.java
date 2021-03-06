@@ -1,5 +1,7 @@
 package com.example.hoff;
 
+import android.widget.RatingBar;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -15,7 +17,7 @@ public class Item {
     @SerializedName("prices")
     private Prices prices;
     @SerializedName("rating")
-    private int rating;
+    private float rating;
     @SerializedName("numberOfReviews")
     private int numberOfReviews;
     @SerializedName("statusText")
@@ -55,11 +57,11 @@ public class Item {
         this.prices = prices;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 

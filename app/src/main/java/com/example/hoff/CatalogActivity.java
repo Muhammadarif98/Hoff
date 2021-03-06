@@ -25,6 +25,10 @@ import retrofit2.Response;
 public class CatalogActivity extends AppCompatActivity {
     private static final int LIMIT = 40;
     private int page = 0;
+    private int categoryId = 320;
+    private String sort_by = "popular";
+    private String sort_type="desc";
+
     private static final boolean isNotMoreData = false;
 
     private RecyclerView mRecyclerView;
@@ -64,7 +68,7 @@ public class CatalogActivity extends AppCompatActivity {
     public void loadData(int page){
         NetworkService.getInstance()
                 .getJsonApi()
-                .getItem(LIMIT, LIMIT * page)
+                .getItem(LIMIT, LIMIT * page,categoryId,sort_by,sort_type)
                 .enqueue(new Callback<Example>() {
                     @Override
                     public void onResponse(Call<Example> call, Response<Example> response) {

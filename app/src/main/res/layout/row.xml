@@ -42,13 +42,35 @@
             android:text="@string/title"
             android:textColor="@color/black"
             android:textStyle="normal" />
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="match_parent"
+            android:layout_below="@id/brand"
+            android:text="@string/status"
+            android:textSize="12sp"
+            android:textColor="@color/grey"
+            android:layout_marginTop="12dp"
+            android:layout_height="wrap_content">
+
+        </TextView>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/brand"
+            android:layout_below="@+id/statusText"
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:theme="@style/MyRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginRight="6dp"
+                android:numStars="5"
+                android:stepSize="1" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -114,6 +136,7 @@
                 android:textColor="@color/grey"
                 />
         </LinearLayout>
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
