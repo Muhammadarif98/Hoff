@@ -69,15 +69,15 @@
         </LinearLayout>
     </LinearLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="16dp"
             android:background="@color/white"
             android:orientation="horizontal"
             android:paddingTop="12dp"
@@ -86,7 +86,7 @@
             <LinearLayout
                 android:layout_width="130dp"
                 android:layout_height="35dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="16dp"
                 android:background="@drawable/rectangle1"
                 android:gravity="center">
 
@@ -152,7 +152,7 @@
                 </TextView>
             </LinearLayout>
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </HorizontalScrollView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViews"
