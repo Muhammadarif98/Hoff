@@ -18,9 +18,15 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 public class CatalogActivity extends AppCompatActivity {
     private static final int LIMIT = 40;
@@ -62,33 +68,68 @@ public class CatalogActivity extends AppCompatActivity {
         myAdapter = new MyAdapter(mPrefs);
         mRecyclerView.setAdapter(myAdapter);
 
-        loadData(page);
+        fetchData();
+      //  loadData(page);
 
     }
-    public void loadData(int page){
+    public void fetchData(){
         NetworkService.getInstance()
                 .getJsonApi()
                 .getItem(LIMIT, LIMIT * page,categoryId,sort_by,sort_type)
-                .enqueue(new Callback<Example>() {
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Response<Example>>() {
                     @Override
-                    public void onResponse(Call<Example> call, Response<Example> response) {
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull Response<Example> response) {
                         if (response.isSuccessful() && response.body() != null) {
                             Example body = response.body();
                             myAdapter.addItems(body.items);
                             mRecyclerView.setAdapter(myAdapter);
                         }
-                        Log.d("TAG2", "onResponse" + (response.body()));
+                        Log.d("TAG1", "onNext" + (response.body()));
                     }
 
                     @Override
-                    public void onFailure(Call<Example> call, Throwable throwable) {
-                        Log.d("TAG", "Response Failure =" + throwable.toString());
+                    public void onError(@NonNull Throwable e) {
+                        Log.d("TAG", "onError =" + e.toString());
                         Toast.makeText(CatalogActivity.this,"Упс! Что то пошло не так", Toast.LENGTH_SHORT).show();
-
                     }
 
+                    @Override
+                    public void onComplete() {
 
+                    }
                 });
-
     }
+//    public void loadData(int page){
+//        NetworkService.getInstance()
+//                .getJsonApi()
+//                .getItem(LIMIT, LIMIT * page,categoryId,sort_by,sort_type)
+//                .enqueue(new Callback<Example>() {
+//                    @Override
+//                    public void onResponse(Call<Example> call, Response<Example> response) {
+//                        if (response.isSuccessful() && response.body() != null) {
+//                            Example body = response.body();
+//                            myAdapter.addItems(body.items);
+//                            mRecyclerView.setAdapter(myAdapter);
+//                        }
+//                        Log.d("TAG2", "onResponse" + (response.body()));
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<Example> call, Throwable throwable) {
+//                        Log.d("TAG", "Response Failure =" + throwable.toString());
+//                        Toast.makeText(CatalogActivity.this,"Упс! Что то пошло не так", Toast.LENGTH_SHORT).show();
+//
+//                    }
+//
+//
+//                });
+//
+//    }
 }

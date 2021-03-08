@@ -1,5 +1,4 @@
 package com.example.hoff;
-
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +37,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
         holder.bind(models.get(position), MyAdapter.this);
     }
-     public void updateValue(String id, boolean isChecked) {
+    public void updateValue(String id, boolean isChecked) {
         mPrefs.edit().putBoolean(id, isChecked).apply();
     }
     public boolean getValue(String id){
