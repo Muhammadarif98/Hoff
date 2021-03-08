@@ -10,21 +10,15 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.Menu;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import io.reactivex.Observer;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 
@@ -78,14 +72,14 @@ public class CatalogActivity extends AppCompatActivity {
                 .getItem(LIMIT, LIMIT * page,categoryId,sort_by,sort_type)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Response<Example>>() {
+                .subscribe(new SingleObserver<Response<Example>>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(@NonNull Response<Example> response) {
+                    public void onSuccess(@NonNull Response<Example> response) {
                         if (response.isSuccessful() && response.body() != null) {
                             Example body = response.body();
                             myAdapter.addItems(body.items);
@@ -94,16 +88,26 @@ public class CatalogActivity extends AppCompatActivity {
                         Log.d("TAG1", "onNext" + (response.body()));
                     }
 
+//                    @Override
+//                    public void onNext(@NonNull Response<Example> response) {
+//                        if (response.isSuccessful() && response.body() != null) {
+//                            Example body = response.body();
+//                            myAdapter.addItems(body.items);
+//                            mRecyclerView.setAdapter(myAdapter);
+//                        }
+//                        Log.d("TAG1", "onNext" + (response.body()));
+//                    }
+
                     @Override
                     public void onError(@NonNull Throwable e) {
                         Log.d("TAG", "onError =" + e.toString());
                         Toast.makeText(CatalogActivity.this,"Упс! Что то пошло не так", Toast.LENGTH_SHORT).show();
                     }
 
-                    @Override
-                    public void onComplete() {
-
-                    }
+//                    @Override
+//                    public void onComplete() {
+//
+//                    }
                 });
     }
 //    public void loadData(int page){

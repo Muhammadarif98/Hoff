@@ -1,8 +1,5 @@
 package com.example.hoff;
 
-import android.widget.RatingBar;
-
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

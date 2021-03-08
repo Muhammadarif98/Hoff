@@ -3,7 +3,6 @@ package com.example.hoff;
 
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -37,7 +36,7 @@ public class MyHolder extends RecyclerView.ViewHolder {
 
     }
 
-    public void bind(Item model,MyAdapter adapter){
+    public void bind(Item model, MyAdapter adapter){
         mNumberOfReviews.setText(String.valueOf(model.getNumberOfReviews()));
         mBrand.setText(model.getName());
         mStatus.setText(model.getStatusText());
