@@ -1,4 +1,4 @@
-package com.example.hoff;
+package com.example.hoff.model.data;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Example {
     @SerializedName("items")
-    List<Item> items;
+   public List<Item> items;
 
 
     public List<Item> getItems() {

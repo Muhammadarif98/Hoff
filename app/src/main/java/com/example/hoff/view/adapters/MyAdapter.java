@@ -1,4 +1,4 @@
-package com.example.hoff;
+package com.example.hoff.view.adapters;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,6 +6,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.hoff.R;
+import com.example.hoff.model.data.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +24,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
 
     public void addItems(List<Item> models) {
         this.models.addAll(models);
+        notifyDataSetChanged();
     }
 
     @NonNull

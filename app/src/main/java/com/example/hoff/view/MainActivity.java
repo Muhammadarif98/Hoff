@@ -1,12 +1,14 @@
-package com.example.hoff;
+package com.example.hoff.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.LinearLayout;
+
+import com.example.hoff.R;
+import com.example.hoff.view.CatalogActivity;
 
 public class MainActivity extends AppCompatActivity {
     private LinearLayout linearLayout;

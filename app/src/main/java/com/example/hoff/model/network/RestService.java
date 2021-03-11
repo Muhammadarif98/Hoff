@@ -1,4 +1,6 @@
-package com.example.hoff;
+package com.example.hoff.model.network;
+
+import com.example.hoff.model.data.Example;
 
 import io.reactivex.Single;
 import retrofit2.Response;

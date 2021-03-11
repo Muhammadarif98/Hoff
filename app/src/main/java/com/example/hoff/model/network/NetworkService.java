@@ -1,4 +1,4 @@
-package com.example.hoff;
+package com.example.hoff.model.network;
 
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
