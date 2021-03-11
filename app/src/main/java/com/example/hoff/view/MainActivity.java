@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 
 import com.example.hoff.R;
-import com.example.hoff.view.CatalogActivity;
 
 public class MainActivity extends AppCompatActivity {
     private LinearLayout linearLayout;

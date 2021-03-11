@@ -6,13 +6,10 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.hoff.R;
 import com.example.hoff.model.data.Item;
-import com.example.hoff.view.adapters.MyAdapter;
 import com.squareup.picasso.Picasso;
 
 
