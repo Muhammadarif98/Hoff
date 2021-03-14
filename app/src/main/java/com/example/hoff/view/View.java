@@ -9,6 +9,9 @@ public interface View {
     void showData(List<Item> list);
 
     void showError(String error);
+    boolean showProgress();
+    boolean hideProgress();
+    boolean addLoading();
 
 
 }

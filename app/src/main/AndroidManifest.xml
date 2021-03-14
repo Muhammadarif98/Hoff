@@ -12,13 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hoff">
         <activity android:name=".view.CatalogActivity"
+            android:screenOrientation="portrait"
             android:label="@string/tovars"
             android:parentActivityName=".view.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.MainActivity"/>
         </activity>
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

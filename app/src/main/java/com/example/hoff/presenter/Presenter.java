@@ -9,9 +9,12 @@ import com.example.hoff.model.data.Example;
 import com.example.hoff.view.View;
 
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import retrofit2.Response;
 
 public class Presenter implements IPresenter {
-    private static final int LIMIT = 40;
+    private static int LIMIT = 20;
     private int page = 0;
     private int categoryId = 320;
     private String sort_by = "popular";
@@ -26,14 +29,21 @@ public class Presenter implements IPresenter {
     }
 
     @Override
-    public void loadData(int page) {
+    public void loadData(int page,int limit) {
+        this.page = page;
+        LIMIT = limit;
         mDisposable = model.getExample(LIMIT, page, categoryId, sort_by, sort_type)
+                .doOnSubscribe(disposable -> mView.showProgress())
+                .doOnSuccess(exampleResponse -> mView.hideProgress())
                 .subscribe(response -> {
+
                     if (response.isSuccessful() && response.body() != null) {
                         Example body = response.body();
                         mView.showData(body.items);
+
                     }
                 }, e -> {
+                    mView.hideProgress();
                     mView.showError("Упс! Что то пошло не так");
                     Log.d("TAG", "onError =" + e.toString());
                 });

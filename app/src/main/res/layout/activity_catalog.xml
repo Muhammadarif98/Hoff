@@ -70,6 +70,7 @@
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScroll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -166,7 +167,6 @@
                 android:id="@+id/recyclerViews"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="15dp"
                 android:background="#FFFFFF"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="8dp"
@@ -178,6 +178,20 @@
                 app:layout_constraintVertical_bias="1.0">
 
             </androidx.recyclerview.widget.RecyclerView>
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_gravity="center"
+                android:paddingTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:indeterminate="true">
+
+            </ProgressBar>
+
+         <!--   <include
+                android:id="@+id/progressbar"
+                layout="@layout/progress_splash" />-->
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

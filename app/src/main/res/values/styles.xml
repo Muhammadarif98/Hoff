@@ -4,4 +4,9 @@
         <item name="colorControlNormal">#E2E4E8</item>
         <item name="colorControlActivated">#FBBB00</item>
     </style>
+
+    <style name="custom_dialog">
+        <item name="android:fullDark">@android:color/transparent</item>
+    </style>
+
 </resources>

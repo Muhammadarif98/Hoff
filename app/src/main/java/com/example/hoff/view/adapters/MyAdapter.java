@@ -15,6 +15,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
 
     List<Item> models = new ArrayList<>();
     SharedPreferences mPrefs;
+    private boolean isLoadingAdded = false;
 
     public MyAdapter(SharedPreferences mPrefs){
         this.mPrefs = mPrefs;
@@ -23,6 +24,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
     public void addItems(List<Item> models) {
         this.models.addAll(models);
         notifyDataSetChanged();
+    }
+    public void addLoadingFooter() {
+        isLoadingAdded = true;
+        //this.models.add(new Item());
     }
 
     @NonNull
