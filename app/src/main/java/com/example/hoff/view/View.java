@@ -11,7 +11,5 @@ public interface View {
     void showError(String error);
     boolean showProgress();
     boolean hideProgress();
-    boolean addLoading();
-
 
 }

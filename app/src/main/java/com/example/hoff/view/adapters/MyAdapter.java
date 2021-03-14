@@ -25,10 +25,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
         this.models.addAll(models);
         notifyDataSetChanged();
     }
-    public void addLoadingFooter() {
-        isLoadingAdded = true;
-        //this.models.add(new Item());
-    }
 
     @NonNull
     @Override
